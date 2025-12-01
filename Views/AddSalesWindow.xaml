@@ -1,0 +1,187 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:vm="clr-namespace:ERP.ViewModels"
+        xmlns:av="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av" x:Class="ERP.Views.AddSalesWindow"
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    Title="Add New Item"
+        Height="450" Width="420"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Segoe UI" ResizeMode="NoResize" WindowStyle="None">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black"/>
+            <GradientStop Color="#FF33487B" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Window.DataContext>
+        <vm:AddSalesViewModel />
+    </Window.DataContext>
+
+    <Border CornerRadius="8" Padding="20" 
+     >
+        <Border.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="#FF2C5182" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- 标题 -->
+            <TextBlock Text="➕ Add Sales"
+                       FontSize="20"
+                       FontWeight="SemiBold"
+                       Foreground="#2C3E50"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,20"/>
+
+            <!-- SKU -->
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,8">
+                <TextBlock Text="OrderNo.:" Width="90" VerticalAlignment="Center" Foreground="#555"/>
+                <TextBox Width="240" 
+                         Padding="6"
+                         BorderBrush="#BDC3C7"
+                         BorderThickness="1"
+                         Background="#FDFDFD"
+                         Text="{Binding OrderNo, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.Style>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Setter Property="BorderBrush" Value="#BDC3C7"/>
+                            <Setter Property="Background" Value="#FDFDFD"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsKeyboardFocused" Value="True">
+                                    <Setter Property="BorderBrush" Value="#3498DB"/>
+                                    <Setter Property="Background" Value="White"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+            </StackPanel>
+
+            <!-- Name -->
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,8">
+                <TextBlock Text="Customer:" Width="90" VerticalAlignment="Center" Foreground="#555"/>
+                <TextBox Width="240" Padding="6"
+                         BorderBrush="#BDC3C7"
+                         BorderThickness="1"
+                         Background="#FDFDFD"
+                         Text="{Binding Customer, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+
+            <!-- Quantity -->
+            <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,8">
+                <TextBlock Text="Amount:" Width="90" VerticalAlignment="Center" Foreground="#555"/>
+                <TextBox Width="240" Padding="6"
+                         BorderBrush="#BDC3C7"
+                         BorderThickness="1"
+                         Background="#FDFDFD"
+                         Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0,8">
+                <TextBlock Text="Product:" Width="90" VerticalAlignment="Center" Foreground="#555" ScrollViewer.CanContentScroll="True"/>
+                <ListBox x:Name="listbox1" Background="#FFF1EFEF" BorderBrush="#FFEBE1EC" Width="240" Height="140"
+         ItemsSource="{Binding Items}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" >
+                    <!--<ListBox.Template>
+                        <ControlTemplate TargetType="ListBox">
+                            <ScrollViewer x:Name="ScrollViewer"
+                          VerticalScrollBarVisibility="Visible"
+                          HorizontalScrollBarVisibility="Disabled" CanContentScroll="True">
+                                <ItemsPresenter />
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="ScrollChanged">
+                                        <i:InvokeCommandAction Command="{Binding ScrollChangedCommand}" PassEventArgsToCommand="True" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </ListBox.Template>-->
+                    <ListBox.Template>
+                        <ControlTemplate TargetType="ListBox">
+                            <Border BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    Background="{TemplateBinding Background}">
+                                <ScrollViewer x:Name="ScrollViewer"
+                              VerticalScrollBarVisibility="Visible"
+                              HorizontalScrollBarVisibility="Disabled"
+                              CanContentScroll="True">
+                                    <ItemsPresenter />
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="ScrollChanged">
+                                            <i:InvokeCommandAction Command="{Binding ScrollChangedCommand}" PassEventArgsToCommand="True" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ScrollViewer>
+                            </Border>
+                        </ControlTemplate>
+                    </ListBox.Template>
+
+
+
+
+
+                </ListBox>
+            </StackPanel>
+
+            <!-- 按钮 -->
+            <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+                <Button Content="Add"
+                        Width="90"
+                        Margin="0,0,12,0"
+                        Padding="6,3"
+                        Background="#27AE60"
+                        Foreground="White"
+                        FontWeight="Bold"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Command="{Binding ConfirmCommand}">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#27AE60"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#2ECC71"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <Button Content="Cancel"
+                        Width="90"
+                        Padding="6,3"
+                        Background="#BDC3C7"
+                        Foreground="Black"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Command="{Binding CancelCommand}">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#BDC3C7"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#95A5A6"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

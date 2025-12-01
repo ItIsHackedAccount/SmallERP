@@ -1,0 +1,332 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- 颜色与渐变刷子 -->
+    <LinearGradientBrush x:Key="AppBackgroundGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#0f1724" Offset="0.0"/>
+        <GradientStop Color="#102a43" Offset="0.5"/>
+        <GradientStop Color="#1f4068" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ButtonNormalGradient" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#4facfe" Offset="0.0"/>
+        <GradientStop Color="#00f2fe" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ButtonHoverGradient" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#43e97b" Offset="0.0"/>
+        <GradientStop Color="#38f9d7" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ButtonPressedGradient" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#2ec6a0" Offset="0.0"/>
+        <GradientStop Color="#17a2a6" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="ButtonForegroundBrush" Color="White"/>
+    <SolidColorBrush x:Key="MutedForegroundBrush" Color="#B8C6D9"/>
+
+    <!-- 颜色调色板 -->
+    <Color x:Key="BgColor">#1F1F23</Color>
+    <Color x:Key="CardColor">#242428</Color>
+    <Color x:Key="AccentColor">#0A84FF</Color>
+    <Color x:Key="SubtleText">#CFCFD4</Color>
+    <Color x:Key="DividerColor">#333338</Color>
+
+    <SolidColorBrush x:Key="BgBrush" Color="{StaticResource BgColor}" />
+    <SolidColorBrush x:Key="CardBrush" Color="{StaticResource CardColor}" />
+    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="SubtleTextBrush" Color="{StaticResource SubtleText}" />
+    <SolidColorBrush x:Key="DividerBrush" Color="{StaticResource DividerColor}" />
+
+    <!-- DataGrid 整体样式 -->
+    <Style x:Key="DataGridStyle" TargetType="DataGrid">
+        <Setter Property="Background" Value="Black"/>
+        <Setter Property="BorderBrush" Value="#DDD"/>
+        <Setter Property="BorderThickness" Value="6"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGrid}">
+                    <Border Background="{TemplateBinding Background}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="8">
+                        <Border.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black"/>
+                                <GradientStop Color="#FF254880" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        <ScrollViewer x:Name="DG_ScrollViewer"
+                              Focusable="false"
+                              HorizontalScrollBarVisibility="Auto"
+                              VerticalScrollBarVisibility="Auto"
+                              IsTabStop="false">
+                     
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                           
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                
+                                </Grid.RowDefinitions>
+
+                                <!-- 列头 -->
+                                <DataGridColumnHeadersPresenter Grid.Row="0"
+                                                        x:Name="PART_ColumnHeadersPresenter"/>
+
+                                <!-- 数据行 -->
+                                <DataGridRowsPresenter Grid.Row="1"
+                                               x:Name="PART_DataGridRowsPresenter"/>
+                                <ItemsPresenter  Grid.Row="2"></ItemsPresenter>
+
+                            </Grid>
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+
+
+
+
+
+        <Setter Property="RowHeaderWidth" Value="0"/>
+        <Setter Property="GridLinesVisibility" Value="None"/>
+        <Setter Property="AlternatingRowBackground" Value="#F9F9F9"/>
+        <Setter Property="RowBackground" Value="CadetBlue"/>
+        <Setter Property="Margin" Value="10"/>
+    </Style>
+
+    <!-- 表头样式 -->
+    <Style x:Key="DataGridHeaderStyle" TargetType="DataGridColumnHeader">
+        <Setter Property="Background" Value="#2D2D30"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Padding" Value="8,4"/>
+        <Setter Property="BorderBrush" Value="#444"/>
+        <Setter Property="BorderThickness" Value="0,0,1,1"/>
+    </Style>
+
+    <!-- 行样式 -->
+    <Style x:Key="DataGridRowStyle" TargetType="DataGridRow">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="BorderBrush" Value="#EEE"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        <Style.Triggers>
+            <!-- 鼠标悬停高亮 -->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#E6F7FF"/>
+            </Trigger>
+            <!-- 选中行高亮 -->
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="#CCE5FF"/>
+                <Setter Property="Foreground" Value="Black"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <!-- 卡片风格 -->
+    <Style x:Key="CardStyle" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource CardBrush}" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Padding" Value="12" />
+        <Setter Property="Margin" Value="8" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="#000000" BlurRadius="10" ShadowDepth="2" Opacity="0.35"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- 区块标题 -->
+    <Style x:Key="SectionHeaderStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="{StaticResource SubtleTextBrush}" />
+        <Setter Property="Margin" Value="0,0,0,8" />
+    </Style>
+
+    <!-- 操作按钮（轻量扁平）-->
+    <Style x:Key="ActionButtonStyle" TargetType="Button">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Background" Value="{StaticResource AccentBrush}" />
+        <Setter Property="Padding" Value="8,6" />
+        <Setter Property="Margin" Value="4" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" 
+                  CornerRadius="6" 
+                  Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- 列表视图样式 -->
+    <Style x:Key="AppListViewItemStyle" TargetType="ListViewItem">
+        <Setter Property="Padding" Value="6,8" />
+        <Setter Property="Margin" Value="0,2" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListViewItem">
+                    <Border x:Name="Bd" Background="Transparent" CornerRadius="6" Padding="{TemplateBinding Padding}">
+                        <ContentPresenter />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="#2E2E34"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="#33333A"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="AppListViewStyle" TargetType="ListView">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource AppListViewItemStyle}" />
+    </Style>
+
+    <!-- GridView 列头样式 -->
+    <Style TargetType="{x:Type GridViewColumnHeader}">
+        <Setter Property="Foreground" Value="{StaticResource SubtleTextBrush}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="Padding" Value="4,6" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+
+    <!-- 分割线 -->
+    <Style x:Key="Divider" TargetType="Rectangle">
+        <Setter Property="Height" Value="1" />
+        <Setter Property="Fill" Value="{StaticResource DividerBrush}" />
+        <Setter Property="Margin" Value="0,8" />
+    </Style>
+
+    <Style TargetType="Button" x:Key="TitleBarButton">
+        <Setter Property="Foreground" Value="DarkGray"/>
+        <Setter Property="Background" Value="Black"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Padding" Value="10,6"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="Bd"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="8"
+                        SnapsToDevicePixels="True"
+                        RenderTransformOrigin="0.5,0.5"
+                        >
+                        <Border.RenderTransform>
+                            <ScaleTransform/>
+                        </Border.RenderTransform>
+                        <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      RecognizesAccessKey="True"
+                                      Margin="{TemplateBinding Padding}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="DarkGray"/>
+                            <Setter Property="Foreground" Value="White"/>
+
+                            <Setter TargetName="Bd" Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="1.02" ScaleY="1.02"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="Red"/>
+                            <Setter TargetName="Bd" Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="0.98" ScaleY="0.98"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{StaticResource MutedForegroundBrush}"/>
+                            <Setter TargetName="Bd" Property="Opacity" Value="0.6"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ModernWindowBackground" TargetType="Window">
+        <Setter Property="Background" Value="{StaticResource AppBackgroundGradient}"/>
+    </Style>
+
+    <!-- 现代按钮样式 -->
+    <Style x:Key="ModernButton" TargetType="Button">
+        <Setter Property="Foreground" Value="{StaticResource ButtonForegroundBrush}"/>
+        <Setter Property="Padding" Value="10,6"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="{StaticResource ButtonNormalGradient}"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="MinWidth" Value="100"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="Bd"
+                  Background="{TemplateBinding Background}"
+                  CornerRadius="8"
+                  SnapsToDevicePixels="True"
+                 >
+                        <ContentPresenter HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              RecognizesAccessKey="True"
+                              Margin="{TemplateBinding Padding}"  />
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource ButtonHoverGradient}"/>
+                            <Setter TargetName="Bd" Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="1.02" ScaleY="1.02"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource ButtonPressedGradient}"/>
+                            <Setter TargetName="Bd" Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="0.98" ScaleY="0.98"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{StaticResource MutedForegroundBrush}"/>
+                            <Setter TargetName="Bd" Property="Opacity" Value="0.6"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- 轻微投影（单独定义以便复用） -->
+    <DropShadowEffect x:Key="_ModernButtonShadow" BlurRadius="12" ShadowDepth="2" Color="#22000000"/>
+
+</ResourceDictionary>
