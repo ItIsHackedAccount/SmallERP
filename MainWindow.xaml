@@ -147,6 +147,23 @@ xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
                 <Button Style="{StaticResource ModernButton}"  Content="Purchase Management" Margin="10" Command="{Binding ShowPurchaseCommand}"/>
                 <Button Style="{StaticResource ModernButton}"  Content="Financial Statement" Margin="10" Command="{Binding ShowFinanceCommand}"/>
                 <Button Style="{StaticResource ModernButton}"  Content="User Manegement" Margin="10" Command="{Binding ShowUserManagementCommand}"/>
+                <TreeView Margin="0,10,10,10" 
+       Style="{StaticResource ModernTreeView}" ScrollViewer.VerticalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Padding="0,0,0,0"   >
+                    <TreeViewItem Header="Others" IsExpanded="False" Style="{StaticResource ModernTreeViewItem}" HorizontalAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Disabled" Padding="10,6,10,6" Margin="0,10,10,10">
+                        <TreeViewItem Header="Products"  Style="{StaticResource ModernTreeViewItem}" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+                        <TreeViewItem Header="Stock Levels"  Style="{StaticResource ModernTreeViewItem}" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+                        <TreeViewItem Header="Suppliers"  Style="{StaticResource ModernTreeViewItem}" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+                    </TreeViewItem>
+
+                    <TreeViewItem Header="To be continued" IsExpanded="False" Style="{StaticResource ModernTreeViewItem}" HorizontalAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Disabled" Padding="10,6,10,6" Margin="0,10,10,10">
+                    
+                    </TreeViewItem>
+
+
+
+
+                </TreeView>
+
 
             </StackPanel>
         </Border>
