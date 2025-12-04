@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Data.Common;
+using System.Windows;
 using System.Windows.Input;
 using ERP.Helpers;
 using Microsoft.Data.Sqlite;
@@ -49,6 +50,12 @@ namespace ERP.ViewModels
 
         private async void ExecuteLogin(object parameter)
         {
+
+            if(string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
+            {
+                MessageBox.Show("Please enter username and password.");
+                return;
+            }
             var connStr = "Data Source=MYDB.db"; // 替换为你的实际数据库路径
             using var db = new ERP.Data.DatabaseClient("Microsoft.Data.Sqlite", connStr);
 

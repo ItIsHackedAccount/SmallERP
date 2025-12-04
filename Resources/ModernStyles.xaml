@@ -26,6 +26,22 @@
     <SolidColorBrush x:Key="ButtonForegroundBrush" Color="White"/>
     <SolidColorBrush x:Key="MutedForegroundBrush" Color="#B8C6D9"/>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- 颜色调色板 -->
     <Color x:Key="BgColor">#1F1F23</Color>
     <Color x:Key="CardColor">#242428</Color>
