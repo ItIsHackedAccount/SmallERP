@@ -4,7 +4,8 @@
         xmlns:vm="clr-namespace:ERP.ViewModels"
         xmlns:views="clr-namespace:ERP.Views"
 xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
-       
+       xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+
         Title="MainWindow"  Height="760" Width="1360"     Style="{StaticResource ModernWindowBackground}" Loaded="Window_Loaded_1"   WindowStartupLocation="CenterScreen" 
         WindowStyle="None" AllowsTransparency="True"  
  >
@@ -41,6 +42,9 @@ xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:UserManagementViewModel}">
             <views:UserManagementView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:DispatchReportViewModel}">
+            <views:DispatchReportView />
         </DataTemplate>
 
     </Window.Resources>
@@ -150,9 +154,21 @@ xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
                 <TreeView Margin="0,10,10,10" 
        Style="{StaticResource ModernTreeView}" ScrollViewer.VerticalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Padding="0,0,0,0"   >
                     <TreeViewItem Header="Others" IsExpanded="False" Style="{StaticResource ModernTreeViewItem}" HorizontalAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Disabled" Padding="10,6,10,6" Margin="0,10,10,10">
-                        <TreeViewItem Header="Products"  Style="{StaticResource ModernTreeViewItem}" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
-                        <TreeViewItem Header="Stock Levels"  Style="{StaticResource ModernTreeViewItem}" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
-                        <TreeViewItem Header="Suppliers"  Style="{StaticResource ModernTreeViewItem}" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+                        <TreeViewItem Header="Dispatch Report"  Style="{StaticResource ModernTreeViewItem}" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="1,10,10,10" Padding="1,6,10,6" >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonUp">
+                                    <i:InvokeCommandAction Command="{Binding ShowDispatchCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </TreeViewItem>
+                        <TreeViewItem Header="Work Order"  Style="{StaticResource ModernTreeViewItem}"  ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="1,10,10,10" Padding="1,6,10,6">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonUp">
+                                    <i:InvokeCommandAction Command="{Binding ShowWorkOrderCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </TreeViewItem>
+                        <TreeViewItem Header="Suppliers"  Style="{StaticResource ModernTreeViewItem}" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="1,10,10,10" Padding="1,6,10,6"/>
                     </TreeViewItem>
 
                     <TreeViewItem Header="To be continued" IsExpanded="False" Style="{StaticResource ModernTreeViewItem}" HorizontalAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Disabled" Padding="10,6,10,6" Margin="0,10,10,10">

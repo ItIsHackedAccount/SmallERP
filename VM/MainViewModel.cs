@@ -45,6 +45,10 @@ namespace ERP.ViewModels
 
         public ICommand CloseWindowCommand { get; }
 
+        public ICommand ShowWorkOrderCommand { get; }
+
+        public ICommand ShowDispatchCommand { get; }
+
         public event Action RequestClose;
 
     
@@ -60,6 +64,8 @@ namespace ERP.ViewModels
             ShowPurchaseCommand = new RelayCommand(_ => CurrentView = new PurchaseViewModel());
             ShowFinanceCommand = new RelayCommand(_ => CurrentView = new FinanceViewModel());
             ShowUserManagementCommand = new RelayCommand(_ => CurrentView = new UserManagementViewModel());
+          //  ShowWorkOrderCommand = new RelayCommand(_ => CurrentView = new WorkOrderViewModel());
+          ShowDispatchCommand= new RelayCommand(_ => CurrentView = new DispatchReportViewModel());
 
             // 默认页面
             CurrentView = new InventoryViewModel();

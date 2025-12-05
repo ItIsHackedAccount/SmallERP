@@ -82,7 +82,7 @@ namespace ERP.ViewModels
             }
             else
             {
-                ErrorMessage = "用户名或密码错误";
+                ErrorMessage = "Wrong username or password";
             }
 
         }
