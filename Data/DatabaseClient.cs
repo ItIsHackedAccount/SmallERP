@@ -27,10 +27,6 @@ namespace ERP.Data
 
         /// <summary>
         /// 尝试根据运行时类型自动注册常见提供程序的 factory（如果所需包已引用）。
-        /// 示例调用：
-        /// RegisterProviderIfAvailable("Microsoft.Data.SqlClient", "Microsoft.Data.SqlClient.SqlClientFactory, Microsoft.Data.SqlClient");
-        /// RegisterProviderIfAvailable("Microsoft.Data.Sqlite", "Microsoft.Data.Sqlite.SqliteFactory, Microsoft.Data.Sqlite");
-        /// RegisterProviderIfAvailable("Oracle.ManagedDataAccess.Client", "Oracle.ManagedDataAccess.Client.OracleClientFactory, Oracle.ManagedDataAccess.Core");
         /// </summary>
         public static void RegisterProviderIfAvailable(string invariantName, DbProviderFactory factory)
         {
